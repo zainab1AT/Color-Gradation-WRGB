@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .flex-container > div {
+      background-color: #f1f1f1;
+      width: 150px;
+      height: 100px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="flex-container" id="color_div">
+</div>
+
+<script>
+  $(document).ready(function () {
+    var rootDiv = $("#color_div");
+
+    function createColorDiv(text, color) {
+      const innerDiv = $("<div></div>");
+      innerDiv.text(text);
+      innerDiv.css("background-color", color);
+      rootDiv.append(innerDiv);
+    }
+
+    for (let index = 0; index < 256; index++) {
+      createColorDiv("Red: " + index, `rgb(${index}, 0, 0)`);
+    }
+    for (let index = 0; index < 256; index++) {
+      createColorDiv("Blue: " + index, `rgb(0, ${index}, 0)`);
+    }
+    for (let index = 0; index < 256; index++) {
+      createColorDiv("Green: " + index, `rgb(0, 0, ${index})`);
+    }
+    for (let index = 0; index < 256; index++) {
+      createColorDiv("Mix: " + index, `rgb(${index}, ${index}, ${index})`);
+    }
+
+    var duration = 100;
+    $(".flex-container > div").each(function (i) {
+      $(this).delay(i * duration).animate({ opacity: 1 });
+    });
+  });
+</script>
+
+</body>
+</html>
